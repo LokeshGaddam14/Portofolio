@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lokesh Gaddam — Data Analyst · Banking & Risk Analytics</title>
+  <meta name="description" content="Data Analyst with proven work in financial risk modeling, complaint intelligence, and loan default detection. Python, SQL, Power BI. Available June 2026.">
+  <meta name="author" content="Lokesh Gaddam">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='80' fill='%23b5572e'>L</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+/* ═══════════════════════════════════════════
+   TOKENS + EASING
+═══════════════════════════════════════════ */
+:root {
+  --paper:     #faf8f5;
+  --paper-alt: #f3f0ea;
+  --ink:       #1a1916;
+  --ink-2:     #3e3b35;
+  --ink-3:     #7a756d;
+  --ink-4:     #b0a99f;
+  --rust:      #b5572e;
+  --rust-light: rgba(181,87,46,.06);
+  --green:     #3d7a5a;
+  --rule:      rgba(26,25,22,.1);
+  --shadow-sm: 0 2px 8px rgba(26,25,22,.06), 0 1px 2px rgba(26,25,22,.04);
+  --shadow-md: 0 8px 32px rgba(26,25,22,.09), 0 2px 6px rgba(26,25,22,.05);
+  --shadow-lg: 0 20px 60px rgba(26,25,22,.12), 0 4px 12px rgba(26,25,22,.06);
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --serif:     'Fraunces', Georgia, serif;
+  --sans:      'Outfit', system-ui, sans-serif;
+  --mono:      'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+/* Paper texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--ink-4); border-radius: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  [data-r] { opacity: 1 !important; transform: none !important; }
+  .sticky-cta { display: none !important; }
+}
+
+.w { max-width: 1060px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════
+   ANIMATION SYSTEM — cubic-bezier(0.22,1,0.36,1)
+   Only hero + project cards + flagship animated
+═══════════════════════════════════════════ */
+[data-r] {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  will-change: opacity, transform;
+  transition:
+    opacity 0.75s var(--ease),
+    transform 0.75s var(--ease);
+}
+[data-r].in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* stagger delays */
+[data-d="1"] { transition-delay: 55ms; }
+[data-d="2"] { transition-delay: 110ms; }
+[data-d="3"] { transition-delay: 165ms; }
+[data-d="4"] { transition-delay: 220ms; }
+[data-d="5"] { transition-delay: 310ms; }
+[data-d="6"] { transition-delay: 370ms; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+.skip-link {
+  position: absolute; top: -40px; left: 0; z-index: 1000;
+  background: var(--ink); color: var(--paper);
+  padding: .5rem 1rem; font-size: .875rem;
+}
+.skip-link:focus { top: 0; }
+
+/* ═══════════════════════════════════════════
+   STICKY CTA BAR
+═══════════════════════════════════════════ */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 300;
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: .9rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  transform: translateY(100%);
+  transition: transform 0.6s var(--ease);
+  will-change: transform;
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta-left {
+  display: flex; align-items: center; gap: .75rem;
+}
+.sticky-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: breathe 2.8s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.sticky-text {
+  font-family: var(--mono); font-size: .75rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(250,248,245,.55);
+}
+.sticky-text strong { color: var(--paper); font-weight: 500; }
+.sticky-links { display: flex; gap: 1.5rem; align-items: center; }
+.sticky-link {
+  font-family: var(--mono); font-size: .72rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(250,248,245,.45);
+  transition: color 0.2s var(--ease);
+}
+.sticky-link:hover { color: var(--paper); }
+.sticky-link-cta {
+  font-family: var(--serif); font-size: .9rem;
+  font-style: italic; font-weight: 500;
+  color: var(--paper);
+  padding: .4rem 1rem;
+  border: 1px solid rgba(250,248,245,.2);
+  border-radius: 2px;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.sticky-link-cta:hover { background: rgba(250,248,245,.08); border-color: rgba(250,248,245,.4); }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 1.75rem 0;
+  transition: padding 0.4s var(--ease), background 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  padding: 1.1rem 0;
+  background: rgba(250,248,245,.93);
+  backdrop-filter: blur(16px);
+  border-color: var(--rule);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 1.05rem; font-weight: 500;
+  color: var(--ink); letter-spacing: -.01em;
+  display: flex; align-items: center; gap: .55rem;
+}
+.nav-brand-sep { color: var(--ink-4); font-weight: 300; }
+.nav-brand-role { color: var(--ink-3); font-weight: 300; font-style: italic; }
+.nav-links { display: flex; gap: 2.2rem; align-items: center; }
+.nav-links a {
+  font-size: .88rem; font-weight: 500; letter-spacing: .02em;
+  color: var(--ink-3); transition: color 0.2s var(--ease);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: var(--ink);
+  transform: scaleX(0);
+  transition: transform 0.25s var(--ease);
+  transform-origin: left;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after,
+.nav-links a.on::after { transform: scaleX(1); }
+.nav-links a.on { color: var(--ink); }
+
+.nav-hire {
+  font-family: var(--serif); font-size: .92rem; font-style: italic;
+  color: var(--rust); display: flex; align-items: center; gap: .4rem;
+}
+.nav-hire-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: breathe 2.8s ease-in-out infinite;
+}
+@keyframes breathe { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.nav-burger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+.nav-burger span {
+  display: block; width: 20px; height: 1.5px;
+  background: var(--ink); border-radius: 1px;
+  transition: transform 0.25s var(--ease), opacity 0.2s;
+}
+.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translateY(6.5px); }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+
+.nav-mobile {
+  display: none; flex-direction: column; gap: .25rem;
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 1rem 2.5rem;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-size: 1rem; font-weight: 500; color: var(--ink-2);
+  padding: .55rem 0; border-bottom: 1px solid var(--rule);
+}
+.nav-mobile a:last-child { border-bottom: none; }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: flex-end;
+  padding-bottom: 5rem;
+  position: relative; overflow: hidden;
+}
+
+.hero-ghost {
+  position: absolute;
+  bottom: -0.15em; left: -0.04em;
+  font-family: var(--serif);
+  font-size: clamp(9rem, 22vw, 22rem);
+  font-weight: 700;
+  color: rgba(26,25,22,.038);
+  white-space: nowrap;
+  pointer-events: none; user-select: none;
+  letter-spacing: -.04em; line-height: 1;
+}
+
+.hero-photo {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: clamp(280px, 38vw, 520px);
+  overflow: hidden;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.hero-photo-ph {
+  width: 100%; height: 100%;
+  background: linear-gradient(170deg, var(--paper-alt) 0%, #e8e1d6 60%, #ddd5c8 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+}
+.hero-photo-ph svg {
+  width: 52px; height: 52px;
+  stroke: var(--ink-4); fill: none;
+  stroke-width: 1.2; stroke-linecap: round;
+}
+.hero-photo-ph span {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4);
+}
+.hero-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--paper) 0%, transparent 30%, transparent 85%, var(--paper) 100%);
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 680px; padding-top: 10rem;
+}
+.hero-avail {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-family: var(--mono); font-size: .76rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 2rem;
+}
+.hero-avail-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); animation: breathe 2.8s ease-in-out infinite;
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(4.2rem, 9.5vw, 10.5rem);
+  font-weight: 500; line-height: .93;
+  letter-spacing: -.04em; margin-bottom: .3em; color: var(--ink);
+}
+.hero-name-last { display: block; font-style: italic; }
+
+.hero-role {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 300; font-style: italic;
+  color: var(--ink-3); margin-bottom: 1.75rem; letter-spacing: -.01em;
+}
+
+.hero-bio {
+  font-size: 1.1rem; line-height: 1.85;
+  color: var(--ink-2); max-width: 52ch; margin-bottom: 1.25rem;
+}
+
+.hero-differentiator {
+  font-family: var(--mono); font-size: .8rem;
+  letter-spacing: .04em; color: var(--rust);
+  margin-bottom: 2.5rem;
+  padding: .75rem 1rem;
+  border-left: 2px solid var(--rust);
+  background: var(--rust-light);
+  max-width: 52ch;
+  line-height: 1.65;
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.hero-cta-solid {
+  font-family: var(--serif); font-size: 1rem;
+  font-weight: 500; font-style: italic;
+  color: var(--paper);
+  background: var(--ink);
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .65rem 1.4rem;
+  border-radius: 2px;
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+  will-change: transform;
+}
+.hero-cta-solid:hover { background: var(--rust); transform: translateY(-1px); }
+.hero-cta-solid:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
+
+.hero-cta-outline {
+  font-family: var(--serif); font-size: 1rem;
+  font-weight: 500; font-style: italic;
+  color: var(--ink);
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .65rem 1.4rem;
+  border-radius: 2px;
+  border: 1px solid rgba(26,25,22,.25);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.25s var(--ease);
+  will-change: transform;
+}
+.hero-cta-outline:hover { border-color: var(--ink); transform: translateY(-1px); }
+.hero-cta-outline:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
+
+.hero-cta-ghost {
+  font-family: var(--mono); font-size: .8rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-3);
+  transition: color 0.2s var(--ease);
+  display: inline-flex; align-items: center; gap: .35rem;
+}
+.hero-cta-ghost:hover { color: var(--ink); }
+.hero-cta-ghost svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s var(--ease); }
+.hero-cta-ghost:hover svg { transform: translate(2px,-2px); }
+
+/* kept for backward compat */
+.hero-cta-primary {
+  font-family: var(--serif); font-size: 1.05rem;
+  font-weight: 500; font-style: italic; color: var(--ink);
+  display: inline-flex; align-items: center; gap: .5rem;
+  border-bottom: 1px solid var(--ink); padding-bottom: .15rem;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.hero-cta-primary:hover { color: var(--rust); border-color: var(--rust); }
+
+.hero-stats {
+  display: flex; gap: 0; margin-top: 4rem;
+  border-top: 1px solid var(--rule); padding-top: 1.75rem;
+}
+.hero-stat { flex: 1; padding-right: 2rem; border-right: 1px solid var(--rule); margin-right: 2rem; }
+.hero-stat:last-child { border-right: none; margin-right: 0; }
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2.4rem; font-weight: 600;
+  color: var(--ink); line-height: 1; margin-bottom: .25rem;
+}
+.hero-stat-num em { color: var(--rust); font-style: normal; }
+.hero-stat-lbl {
+  font-family: var(--mono); font-size: .68rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4);
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════ */
+hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+.sec { padding: 7rem 0; }
+.sec-label {
+  font-family: var(--mono);
+  font-size: .73rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-4);
+  margin-bottom: 2.5rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.sec-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.sec-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 500; letter-spacing: -.03em;
+  line-height: 1.08; color: var(--ink);
+}
+.sec-heading em { font-style: italic; color: var(--rust); }
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+#about { background: var(--paper); }
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 6rem; align-items: start; margin-top: 4rem;
+}
+.about-left .sec-heading { margin-bottom: 2rem; }
+.about-bio-tag {
+  font-family: var(--mono); font-size: .73rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--rust); display: block; margin-bottom: .75rem;
+}
+.about-left p { font-size: 1.05rem; color: var(--ink-2); line-height: 1.9; margin-bottom: 1.25rem; }
+.about-left p:last-of-type { margin-bottom: 0; }
+.about-right { padding-top: .5rem; }
+.about-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 400; font-style: italic;
+  color: var(--ink-2); line-height: 1.5;
+  margin-bottom: 3rem; max-width: 36ch;
+}
+.about-quote-src {
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-4); display: block; margin-top: .6rem; font-style: normal;
+}
+.about-facts { display: grid; gap: 1.5rem; }
+.about-fact { padding: 0 0 1.5rem; border-bottom: 1px solid var(--rule); }
+.about-fact:last-child { border-bottom: none; padding-bottom: 0; }
+.about-fact-label {
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: .5rem; display: block;
+}
+.about-fact-value { font-size: .97rem; color: var(--ink-2); line-height: 1.65; }
+.about-fact-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+
+.tag {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .06em;
+  padding: .18rem .55rem; border-radius: 2px;
+  border: 1px solid var(--rule); color: var(--ink-3); background: transparent;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.tag:hover { border-color: var(--rust); color: var(--rust); }
+.tag-rust { border-color: rgba(181,87,46,.3); color: var(--rust); }
+.tag-green { border-color: rgba(61,122,90,.3); color: var(--green); }
+
+.resume-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  margin-top: 1.5rem;
+  font-family: var(--serif); font-size: 1rem;
+  font-weight: 500; font-style: italic; color: var(--ink);
+  border-bottom: 1px solid var(--ink); padding-bottom: .15rem;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.resume-btn:hover { color: var(--rust); border-color: var(--rust); }
+.resume-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ═══════════════════════════════════════════
+   OPINION STRIP
+═══════════════════════════════════════════ */
+.opinion-strip {
+  background: var(--ink);
+  padding: 4.5rem 0;
+}
+.opinion-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem; align-items: center;
+}
+.opinion-label {
+  font-family: var(--mono); font-size: .68rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(176,169,159,.4); writing-mode: vertical-rl;
+  transform: rotate(180deg); white-space: nowrap;
+}
+.opinion-text {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  font-weight: 400; font-style: italic;
+  color: var(--paper); line-height: 1.5; max-width: 60ch;
+}
+.opinion-text strong { color: #e8a882; font-style: normal; font-weight: 500; }
+.opinion-byline {
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(176,169,159,.45); margin-top: 1.25rem; display: block;
+}
+
+/* ═══════════════════════════════════════════
+   FLAGSHIP CASE STUDY
+═══════════════════════════════════════════ */
+#flagship { background: var(--paper-alt); }
+.flagship-grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+.flagship-tag {
+  font-family: var(--mono); font-size: .68rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 1rem; display: block;
+}
+.flagship-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  font-weight: 500; letter-spacing: -.03em;
+  color: var(--ink); line-height: 1.1; margin-bottom: 1.75rem;
+}
+.flagship-row {
+  display: grid; grid-template-columns: 88px 1fr;
+  gap: .5rem 1.5rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.flagship-row:first-of-type { border-top: 1px solid var(--rule); }
+.flagship-row-key {
+  font-family: var(--mono); font-size: .66rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-4); padding-top: .1rem;
+}
+.flagship-row-val { font-size: .95rem; color: var(--ink-2); line-height: 1.75; }
+.flagship-row-val strong { color: var(--ink); font-weight: 600; }
+
+.flagship-metric {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .06em; color: var(--green);
+  background: rgba(61,122,90,.07);
+  padding: .22rem .65rem; border-radius: 2px;
+  border: 1px solid rgba(61,122,90,.2);
+  margin: .2rem .2rem .2rem 0;
+}
+
+/* Visual mockup for flagship */
+.flagship-visual {
+  margin-top: 2rem;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  box-shadow: var(--shadow-md);
+}
+.flagship-visual-label {
+  font-family: var(--mono); font-size: .63rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-4); padding: .75rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-alt);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.flagship-visual-inner { padding: 1.25rem; }
+
+/* ROC curve SVG */
+.roc-wrap { position: relative; }
+.roc-wrap svg { width: 100%; height: auto; display: block; }
+
+/* Confusion matrix */
+.conf-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.conf-cell {
+  border-radius: 3px; padding: .75rem;
+  display: flex; flex-direction: column; gap: .2rem;
+  text-align: center;
+}
+.conf-cell-num {
+  font-family: var(--serif); font-size: 1.4rem; font-weight: 600;
+  line-height: 1;
+}
+.conf-cell-lbl {
+  font-family: var(--mono); font-size: .58rem;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.conf-tp { background: rgba(61,122,90,.12); color: var(--green); }
+.conf-fp { background: rgba(181,87,46,.08); color: var(--rust); }
+.conf-fn { background: rgba(181,87,46,.08); color: var(--rust); }
+.conf-tn { background: rgba(61,122,90,.12); color: var(--green); }
+
+/* Feature importance bar */
+.feat-bar-list { display: grid; gap: .55rem; }
+.feat-bar-item {}
+.feat-bar-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: .25rem;
+}
+.feat-bar-name { font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; color: var(--ink-2); }
+.feat-bar-val { font-family: var(--mono); font-size: .65rem; color: var(--ink-4); }
+.feat-bar-track {
+  height: 4px; background: var(--rule); border-radius: 999px; overflow: hidden;
+}
+.feat-bar-fill {
+  height: 100%; border-radius: 999px;
+  background: var(--ink-2); width: 0;
+  transition: width 1.2s var(--ease);
+}
+.feat-bar-fill.rust { background: var(--rust); }
+.feat-bar-fill.green { background: var(--green); }
+
+.flagship-section-label {
+  font-family: var(--mono); font-size: .66rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: .6rem; display: block;
+}
+.flagship-section {
+  margin-bottom: 2.25rem; padding-bottom: 2.25rem; border-bottom: 1px solid var(--rule);
+}
+.flagship-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.flagship-section p { font-size: .97rem; color: var(--ink-2); line-height: 1.82; margin-bottom: .65rem; }
+.flagship-section p:last-child { margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════
+   PROJECTS — card layout with visuals
+═══════════════════════════════════════════ */
+#work { background: var(--paper); }
+.work-list { margin-top: 4rem; display: grid; gap: 0; }
+
+.work-card {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3.5rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+  transition: transform 0.4s var(--ease);
+  will-change: transform;
+}
+.work-card:first-child { border-top: 1px solid var(--rule); }
+.work-card:hover { transform: translateY(-2px); }
+
+.work-card-left {}
+.work-card-top {
+  display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 1rem;
+}
+.work-num {
+  font-family: var(--mono); font-size: .73rem;
+  letter-spacing: .1em; color: var(--ink-4); flex-shrink: 0;
+}
+.work-title {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 500; letter-spacing: -.02em;
+  color: var(--ink); line-height: 1.2;
+  transition: color 0.25s var(--ease);
+}
+.work-card:hover .work-title { color: var(--rust); }
+.work-problem {
+  font-size: .92rem; color: var(--ink-3); line-height: 1.6;
+  font-style: italic; margin-bottom: 1.5rem;
+  padding-left: calc(1.5rem + 2.5ch); /* align under title */
+}
+
+.work-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.work-detail-cell {
+  background: var(--paper);
+  padding: .85rem 1rem;
+}
+.work-detail-label {
+  font-family: var(--mono); font-size: .6rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4);
+  margin-bottom: .3rem; display: block;
+}
+.work-detail-text { font-size: .85rem; color: var(--ink-2); line-height: 1.55; }
+.work-detail-text strong { color: var(--ink); font-weight: 600; }
+
+.work-meta {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem;
+}
+.work-tags { display: flex; gap: .3rem; flex-wrap: wrap; }
+.work-link {
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-4); display: inline-flex; align-items: center; gap: .3rem;
+  transition: color 0.2s var(--ease);
+}
+.work-link:hover { color: var(--ink); }
+.work-link svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s var(--ease); }
+.work-link:hover svg { transform: translate(2px,-2px); }
+
+.work-next {
+  font-family: var(--mono); font-size: .72rem;
+  letter-spacing: .03em; color: var(--ink-4);
+  display: flex; align-items: flex-start; gap: .45rem;
+  margin-top: .75rem;
+}
+.work-next::before { content: '↑'; color: var(--rust); flex-shrink: 0; }
+
+/* Visual panel */
+.work-card-visual {
+  border-radius: 4px; overflow: hidden;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-sm);
+  background: var(--paper-alt);
+  transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+  will-change: transform, box-shadow;
+}
+.work-card:hover .work-card-visual {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.visual-header {
+  padding: .65rem 1rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; gap: .5rem;
+}
+.visual-dots { display: flex; gap: .35rem; }
+.visual-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--rule);
+}
+.visual-dot:nth-child(1) { background: #ff5f57; }
+.visual-dot:nth-child(2) { background: #ffbc2e; }
+.visual-dot:nth-child(3) { background: #28c840; }
+.visual-title-bar {
+  flex: 1; text-align: center;
+  font-family: var(--mono); font-size: .6rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4);
+}
+.visual-body { padding: 1rem; }
+
+/* Dashboard mockup */
+.dash-mockup { display: grid; gap: .5rem; }
+.dash-row { display: flex; gap: .5rem; }
+.dash-kpi {
+  flex: 1; border-radius: 2px; padding: .6rem .75rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+.dash-kpi-num {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
+  color: var(--ink); line-height: 1; margin-bottom: .15rem;
+}
+.dash-kpi-num.rust { color: var(--rust); }
+.dash-kpi-num.green { color: var(--green); }
+.dash-kpi-lbl { font-family: var(--mono); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); }
+.dash-chart {
+  flex: 2; border-radius: 2px; padding: .6rem .75rem;
+  background: var(--paper); border: 1px solid var(--rule);
+}
+.dash-chart-lbl { font-family: var(--mono); font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: .4rem; }
+.dash-bars { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+.dash-bar { flex: 1; border-radius: 1px 1px 0 0; min-width: 4px; }
+.dash-table-row {
+  display: flex; justify-content: space-between;
+  padding: .3rem 0; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .03em;
+  color: var(--ink-3);
+}
+.dash-table-row:last-child { border-bottom: none; }
+.dash-table-row span:last-child { color: var(--rust); font-weight: 500; }
+
+/* Equity curve mockup */
+.equity-mockup { position: relative; }
+.equity-mockup svg { width: 100%; height: auto; display: block; }
+.equity-stat {
+  display: flex; gap: .75rem; margin-top: .5rem;
+  border-top: 1px solid var(--rule); padding-top: .5rem;
+}
+.eq-s { flex: 1; text-align: center; }
+.eq-s-num { font-family: var(--serif); font-size: .95rem; font-weight: 600; color: var(--ink); }
+.eq-s-lbl { font-family: var(--mono); font-size: .55rem; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-4); }
+
+/* CNN output mockup */
+.cnn-mockup { display: grid; gap: .5rem; }
+.cnn-face {
+  width: 100%; aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #e8e1d6 0%, #ddd5c8 100%);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.cnn-box {
+  position: absolute;
+  border: 1.5px solid var(--green);
+  border-radius: 2px;
+  width: 45%; aspect-ratio: 3/4;
+}
+.cnn-box-label {
+  position: absolute; top: -18px; left: 0;
+  font-family: var(--mono); font-size: .55rem;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--paper); background: var(--green);
+  padding: .1rem .3rem; border-radius: 1px;
+  white-space: nowrap;
+}
+.cnn-stats { display: flex; gap: .5rem; }
+.cnn-stat {
+  flex: 1; background: var(--paper); border: 1px solid var(--rule);
+  border-radius: 2px; padding: .4rem .6rem; text-align: center;
+}
+.cnn-stat-n { font-family: var(--serif); font-size: .9rem; font-weight: 600; color: var(--green); }
+.cnn-stat-l { font-family: var(--mono); font-size: .53rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-4); }
+
+/* work filters */
+.work-filters { display: flex; gap: 2rem; }
+.wf {
+  font-family: var(--mono); font-size: .73rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-4); transition: color 0.2s var(--ease);
+  padding-bottom: .25rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.wf.on, .wf:hover { color: var(--ink); border-color: var(--ink); }
+.work-header-row {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; flex-wrap: wrap; gap: 1rem;
+}
+
+/* ═══════════════════════════════════════════
+   GITHUB REPOS
+═══════════════════════════════════════════ */
+#repos { background: var(--paper-alt); }
+.repos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.repo-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1.75rem;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease), border-color 0.25s var(--ease);
+  will-change: transform, box-shadow;
+}
+.repo-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: rgba(181,87,46,.2);
+}
+.repo-card-num {
+  font-family: var(--mono); font-size: .65rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-4); margin-bottom: .75rem;
+}
+.repo-card-name {
+  font-family: var(--serif); font-size: 1.15rem;
+  font-weight: 500; letter-spacing: -.02em;
+  color: var(--ink); margin-bottom: .75rem; line-height: 1.3;
+}
+.repo-card-desc {
+  font-size: .88rem; color: var(--ink-3); line-height: 1.65;
+  margin-bottom: 1.25rem; flex: 1;
+}
+.repo-card-metric {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--mono); font-size: .7rem;
+  letter-spacing: .06em; color: var(--green);
+  background: rgba(61,122,90,.07);
+  padding: .22rem .65rem; border-radius: 2px;
+  border: 1px solid rgba(61,122,90,.2);
+  margin-bottom: 1.25rem; align-self: flex-start;
+}
+.repo-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--rule); padding-top: 1rem;
+}
+.repo-card-tags { display: flex; gap: .3rem; flex-wrap: wrap; }
+.repo-card-link {
+  font-family: var(--mono); font-size: .68rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-4); display: inline-flex; align-items: center; gap: .3rem;
+  transition: color 0.2s var(--ease);
+  flex-shrink: 0;
+}
+.repo-card-link:hover { color: var(--ink); }
+.repo-card-link svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s var(--ease); }
+.repo-card-link:hover svg { transform: translate(2px,-2px); }
+
+/* ═══════════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════════ */
+#skills { background: var(--paper); }
+.skills-layout {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 6rem; align-items: start; margin-top: 4rem;
+}
+.skills-intro .sec-heading { margin-bottom: 1.5rem; }
+.skills-intro p { font-size: 1rem; color: var(--ink-3); line-height: 1.8; }
+
+.skills-proof-list { display: grid; gap: 0; }
+.skill-proof-row {
+  padding: 1.6rem 0; border-bottom: 1px solid var(--rule);
+  transition: background 0.2s;
+}
+.skill-proof-row:first-child { border-top: 1px solid var(--rule); }
+.skill-proof-header {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: .6rem;
+}
+.skill-proof-name {
+  font-family: var(--serif); font-size: 1.1rem;
+  font-weight: 500; color: var(--ink);
+}
+.skill-proof-badge {
+  font-family: var(--mono); font-size: .62rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--green); background: rgba(61,122,90,.08);
+  border: 1px solid rgba(61,122,90,.2);
+  padding: .12rem .5rem; border-radius: 2px;
+}
+.skill-proof-evidence {
+  font-size: .87rem; color: var(--ink-3); line-height: 1.7;
+  margin-bottom: .65rem;
+}
+.skill-proof-evidence strong { color: var(--rust); font-weight: 600; }
+.skill-proof-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+
+/* ═══════════════════════════════════════════
+   JOURNEY
+═══════════════════════════════════════════ */
+#journey { background: var(--paper-alt); }
+.journey-layout {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 6rem; margin-top: 4rem;
+}
+.j-tabs { display: flex; flex-direction: column; gap: .1rem; }
+.j-btn {
+  font-family: var(--mono); font-size: .73rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-4); padding: .7rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left; transition: color 0.2s var(--ease);
+  display: flex; align-items: center; gap: .6rem;
+}
+.j-btn:last-child { border-bottom: none; }
+.j-btn::before { content: ''; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--ink-4); flex-shrink: 0; transition: background 0.2s var(--ease), border-color 0.2s var(--ease); }
+.j-btn[aria-selected="true"] { color: var(--ink); }
+.j-btn[aria-selected="true"]::before { background: var(--rust); border-color: var(--rust); }
+.j-panel { display: none; }
+.j-panel[aria-hidden="false"] { display: block; animation: jin 0.35s var(--ease); }
+@keyframes jin { from{opacity:0;transform:translateY(10px) scale(0.99)} to{opacity:1;transform:translateY(0) scale(1)} }
+.j-period { font-family: var(--mono); font-size: .73rem; letter-spacing: .12em; text-transform: uppercase; color: var(--rust); margin-bottom: .75rem; }
+.j-title { font-family: var(--serif); font-size: clamp(1.6rem, 2.6vw, 2.4rem); font-weight: 500; letter-spacing: -.02em; margin-bottom: 1.25rem; color: var(--ink); }
+.j-body p { font-size: 1rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 1rem; }
+.j-body ul { list-style: none; display: grid; gap: .5rem; margin-bottom: 1.25rem; }
+.j-body li { font-size: .97rem; color: var(--ink-3); line-height: 1.65; padding-left: 1.1rem; position: relative; }
+.j-body li::before { content: '—'; position: absolute; left: 0; color: var(--ink-4); }
+.j-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+#contact { background: var(--paper); }
+.contact-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: start; margin-top: 4rem;
+}
+.contact-left .sec-heading { margin-bottom: 1.5rem; }
+.contact-left p { font-size: 1.05rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 1.5rem; }
+.contact-cta-line {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1rem; color: var(--ink-3); line-height: 1.7;
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--rule);
+  background: var(--paper-alt);
+  border-radius: 2px;
+}
+.contact-cta-line strong { color: var(--ink); font-style: normal; font-weight: 600; }
+.contact-links { display: flex; flex-direction: column; }
+.c-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 0; border-bottom: 1px solid var(--rule);
+  transition: padding-left 0.3s var(--ease);
+}
+.c-link:first-child { border-top: 1px solid var(--rule); }
+.c-link:hover { padding-left: .5rem; }
+.c-link-left { display: flex; flex-direction: column; gap: .15rem; }
+.c-link-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--ink); }
+.c-link-handle { font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; color: var(--ink-4); }
+.c-link-arrow { font-size: .9rem; color: var(--ink-4); transition: color 0.2s var(--ease), transform 0.25s var(--ease); }
+.c-link:hover .c-link-arrow { color: var(--rust); transform: translateX(4px); }
+
+.avail-badge {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-family: var(--mono); font-size: .73rem;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--green); background: rgba(61,122,90,.07);
+  border: 1px solid rgba(61,122,90,.2);
+  padding: .5rem .9rem; border-radius: 2px; margin-bottom: 1.5rem;
+}
+.avail-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); animation: breathe 2.8s ease-in-out infinite;
+}
+
+/* Form */
+.contact-form-hdg { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; font-style: italic; color: var(--ink); margin-bottom: 2rem; }
+.f-group { margin-bottom: 1.25rem; }
+.f-label { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-4); display: block; margin-bottom: .45rem; }
+.f-input, .f-textarea {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid var(--rule);
+  padding: .6rem 0; font-family: var(--sans); font-size: 1rem;
+  color: var(--ink); outline: none; transition: border-color 0.2s var(--ease);
+}
+.f-input:focus, .f-textarea:focus { border-color: var(--ink); box-shadow: 0 1px 0 var(--ink); }
+.f-textarea { min-height: 100px; resize: vertical; padding-top: .75rem; }
+.f-input::placeholder, .f-textarea::placeholder { color: var(--ink-4); }
+.f-submit {
+  margin-top: 2rem;
+  font-family: var(--serif); font-size: 1.05rem; font-weight: 500; font-style: italic;
+  color: var(--ink); display: flex; align-items: center; gap: .5rem;
+  border-bottom: 1px solid var(--ink); padding-bottom: .15rem;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease); background: transparent;
+}
+.f-submit:hover:not(:disabled) { color: var(--rust); border-color: var(--rust); }
+.f-submit:disabled { opacity: .5; cursor: not-allowed; }
+.f-note { font-family: var(--mono); font-size: .73rem; letter-spacing: .06em; color: var(--green); margin-top: .75rem; min-height: 1em; }
+.f-note.error { color: var(--rust); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.footer {
+  padding: 2.5rem 0; border-top: 1px solid var(--rule); background: var(--paper);
+  /* pad for sticky bar */
+  padding-bottom: 5rem;
+}
+.footer-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-name { font-family: var(--serif); font-size: 1rem; font-weight: 500; color: var(--ink-3); font-style: italic; }
+.footer-copy { font-family: var(--mono); font-size: .68rem; letter-spacing: .06em; color: var(--ink-4); }
+.footer-links { display: flex; gap: 1.75rem; }
+.footer-links a { font-family: var(--mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); transition: color 0.2s var(--ease); }
+.footer-links a:hover { color: var(--ink); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-photo { width: clamp(200px, 32vw, 380px); }
+  .hero-content { max-width: 580px; }
+  .about-layout, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 3.5rem; }
+  .journey-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .j-tabs { flex-direction: row; flex-wrap: wrap; gap: 0; }
+  .j-btn { border-bottom: none; border-right: 1px solid var(--rule); padding: .5rem .9rem; }
+  .j-btn:last-child { border-right: none; }
+  .flagship-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .opinion-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .opinion-label { writing-mode: horizontal-tb; transform: none; }
+  .work-card { grid-template-columns: 1fr; gap: 2rem; }
+  .repos-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 780px) {
+  .hero-name { font-size: clamp(3rem, 13vw, 5rem); }
+  .hero-photo { width: 45vw; }
+  .hero-photo::after { background: linear-gradient(to right, var(--paper) 0%, transparent 40%, transparent 100%); }
+  .nav-links { display: none; }
+  .nav-hire { display: none; }
+  .nav-burger { display: flex; }
+  .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  .hero-stat { flex: none; width: calc(50% - .75rem); border-right: none; padding-right: 0; margin-right: 0; }
+  .repos-grid { grid-template-columns: 1fr; }
+  .work-problem { padding-left: 0; }
+  .sticky-cta { padding: .75rem 1.5rem; }
+  .sticky-links { display: none; }
+}
+@media (max-width: 520px) {
+  .w { padding: 0 1.5rem; }
+  .hero-photo { display: none; }
+  .hero-content { max-width: 100%; padding-top: 8rem; }
+  .sec { padding: 5rem 0; }
+  .hero-ctas { gap: 1rem; }
+  .work-detail-grid { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- STICKY CTA BAR -->
+<div class="sticky-cta" id="sticky-cta" role="complementary" aria-label="Availability status">
+  <div class="sticky-cta-left">
+    <div class="sticky-dot" aria-hidden="true"></div>
+    <span class="sticky-text"><strong>Open to Data Analyst roles</strong> · Available June 2026</span>
+  </div>
+  <div class="sticky-links">
+    <a href="https://linkedin.com/in/lokesh-gaddam-data-analyst" target="_blank" rel="noreferrer noopener" class="sticky-link">LinkedIn</a>
+    <a href="https://github.com/LokeshGaddam14" target="_blank" rel="noreferrer noopener" class="sticky-link">GitHub</a>
+    <a href="#contact" class="sticky-link-cta">Get in touch →</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="w nav-inner">
+    <a href="#hero" class="nav-brand">
+      Lokesh Gaddam
+      <span class="nav-brand-sep">·</span>
+      <span class="nav-brand-role">Data Analyst</span>
+    </a>
+
+    <button class="nav-burger" id="nb" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nm">
+      <span></span><span></span>
+    </button>
+
+    <div class="nav-links" id="nl" role="menubar">
+      <a href="#about" role="menuitem">About</a>
+      <a href="#flagship" role="menuitem">Case Study</a>
+      <a href="#work" role="menuitem">Projects</a>
+      <a href="#repos" role="menuitem">GitHub</a>
+      <a href="#skills" role="menuitem">Skills</a>
+      <a href="#contact" role="menuitem">Contact</a>
+    </div>
+
+    <div class="nav-hire">
+      <div class="nav-hire-dot" aria-hidden="true"></div>
+      Available June 2026
+    </div>
+  </div>
+  <div class="nav-mobile" id="nm">
+    <a href="#about">About</a>
+    <a href="#flagship">Case Study</a>
+    <a href="#work">Projects</a>
+    <a href="#repos">GitHub</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="hero-ghost" aria-hidden="true">Gaddam</div>
+
+  <div class="hero-photo" role="img" aria-label="Lokesh Gaddam profile photo">
+    <div class="hero-photo-ph">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Your photo here</span>
+    </div>
+  </div>
+
+  <div class="w" style="width:100%">
+    <div class="hero-content">
+
+      <div class="hero-avail" data-r>
+        <div class="hero-avail-dot" aria-hidden="true"></div>
+        Open to DA / BA roles · June 2026
+      </div>
+
+      <h1 id="hero-heading" class="hero-name" data-r data-d="1">
+        Lokesh
+        <span class="hero-name-last">Gaddam</span>
+      </h1>
+
+      <p class="hero-role" data-r data-d="2">
+        Data Analyst — Banking, Risk &amp; Financial Analytics
+      </p>
+
+      <p class="hero-bio" data-r data-d="3">
+        I build analytics that flag risk before it becomes a loss. Loan default classifier at AUC 0.91 on 77K records. Complaint intelligence dashboard across 8 product lines. Backtested stock strategy with quantified Sharpe-like metrics.
+      </p>
+
+      <div class="hero-differentiator" data-r data-d="4">
+        Differentiator: I work backwards from the business decision, not forwards from the data. Every model I ship answers a specific question a manager would actually ask.
+      </div>
+
+      <div class="hero-ctas" data-r data-d="4">
+        <a href="#flagship" class="hero-cta-solid">Read the case study →</a>
+        <a href="https://linkedin.com/in/lokesh-gaddam-data-analyst" target="_blank" rel="noreferrer noopener" class="hero-cta-outline">
+          <svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a href="https://github.com/LokeshGaddam14" target="_blank" rel="noreferrer noopener" class="hero-cta-ghost">
+          GitHub
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/lokesh-gaddam-data-analyst" target="_blank" rel="noreferrer noopener" class="hero-cta-ghost">
+          LinkedIn
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-stats" data-r data-d="5">
+        <div class="hero-stat">
+          <div class="hero-stat-num">0.91<em></em></div>
+          <div class="hero-stat-lbl">AUC · Loan<br>Default Model</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">77<em>K</em></div>
+          <div class="hero-stat-lbl">Records<br>Modeled</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">8<em>+</em></div>
+          <div class="hero-stat-lbl">Power BI<br>Dashboard Views</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="sec" aria-labelledby="about-heading">
+  <div class="w">
+    <div class="sec-label" data-r>About</div>
+
+    <div class="about-layout">
+      <div class="about-left" data-r>
+        <h2 id="about-heading" class="sec-heading">The analyst who reads<br>the <em>P&L first</em></h2>
+        <div style="margin-top:2.5rem">
+          <span class="about-bio-tag">Background</span>
+          <p>I specialise in financial and risk analytics — where a misclassified loan costs money and a missed complaint trend costs customers.</p>
+          <p>Final-year B.Tech (ECE — Data Science) at KL University, CGPA 8.2. Four shipped projects: raw CSV ingestion to production-ready Power BI reports, with reproducible Python pipelines and documented methodology throughout.</p>
+          <p>I write code to be read by the next analyst. I write dashboards to be trusted by someone who doesn't know what a p-value is.</p>
+        </div>
+        <a href="https://linkedin.com/in/lokesh-gaddam-data-analyst" target="_blank" rel="noreferrer noopener" class="resume-btn" aria-label="View LinkedIn profile">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+      </div>
+
+      <div class="about-right" data-r data-d="2">
+        <blockquote class="about-quote">
+          "A dashboard that requires explanation has already failed. The insight should be visible before the meeting starts."
+          <cite class="about-quote-src">— My design principle for BI reports</cite>
+        </blockquote>
+
+        <div class="about-facts">
+          <div class="about-fact">
+            <span class="about-fact-label">Education</span>
+            <div class="about-fact-value">B.Tech — ECE (Data Science Specialisation)<br>KL University · CGPA 8.2 · Graduating May 2026</div>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-label">Certifications</span>
+            <div class="about-fact-tags">
+              <span class="tag tag-green">Google Data Analytics — Coursera</span>
+              <span class="tag tag-green">Python for Data Science — Coursera</span>
+            </div>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-label">Domain Focus</span>
+            <div class="about-fact-tags">
+              <span class="tag tag-rust">Loan default & credit risk</span>
+              <span class="tag tag-rust">Complaint intelligence</span>
+              <span class="tag tag-rust">Quantitative backtesting</span>
+              <span class="tag">ETL pipeline design</span>
+              <span class="tag">Statistical EDA</span>
+              <span class="tag">ML classification</span>
+            </div>
+          </div>
+          <div class="about-fact">
+            <span class="about-fact-label">Open To</span>
+            <div class="about-fact-value">Data Analyst · Business Analyst in banking, fintech, or financial services. Hybrid or remote. Vijayawada / Hyderabad preferred; open to relocation.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ OPINION ═══ -->
+<div class="opinion-strip" role="complementary" aria-label="Professional perspective">
+  <div class="w">
+    <div class="opinion-inner">
+      <div class="opinion-label" aria-hidden="true">My take</div>
+      <div>
+        <p class="opinion-text">
+          Most analytics teams optimise for <strong>model accuracy</strong> when they should optimise for <strong>decision quality</strong>. A 95% accurate fraud model that takes 48 hours to explain to compliance is worth less than an 87% model with a clear decision tree. The metric that matters is how fast a human can act — not the AUC in the notebook.
+        </p>
+        <span class="opinion-byline">— Lokesh Gaddam · On analytics in regulated industries</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FLAGSHIP CASE STUDY ═══ -->
+<section id="flagship" class="sec" aria-labelledby="flagship-heading">
+  <div class="w">
+    <div class="sec-label" data-r>Flagship Case Study</div>
+
+    <div class="flagship-grid">
+      <div class="flagship-left" data-r>
+        <span class="flagship-tag">Deep dive · Banking Risk</span>
+        <h2 id="flagship-heading" class="flagship-title">Bank Loan Default<br>Detection Pipeline</h2>
+
+        <div class="flagship-row">
+          <div class="flagship-row-key">Problem</div>
+          <div class="flagship-row-val">A lending portfolio with no automated early-warning system. Risk officers reviewing applications manually, missing behavioural signals.</div>
+        </div>
+        <div class="flagship-row">
+          <div class="flagship-row-key">Dataset</div>
+          <div class="flagship-row-val"><strong>77,000+ loan records</strong> · 35 raw features · Class imbalance: 78% non-default / 22% default</div>
+        </div>
+        <div class="flagship-row">
+          <div class="flagship-row-key">Approach</div>
+          <div class="flagship-row-val">EDA → imputation (median/mode by segment) → 14 engineered features (debt-to-income, repayment history score, utilisation flags) → SMOTE rebalancing → Random Forest + XGBoost comparison → threshold tuning to minimise false negatives</div>
+        </div>
+        <div class="flagship-row">
+          <div class="flagship-row-key">Result</div>
+          <div class="flagship-row-val">
+            <span class="flagship-metric">AUC 0.91</span>
+            <span class="flagship-metric">Recall 0.87</span>
+            <span class="flagship-metric">Precision 0.84</span>
+            <span class="flagship-metric">F1 0.855</span>
+          </div>
+        </div>
+        <div class="flagship-row">
+          <div class="flagship-row-key">Business impact</div>
+          <div class="flagship-row-val">At 0.87 recall across 77K records: correctly flags ~<strong>14,700 of 16,940 true defaults</strong> — ranked risk score for credit decisioning.</div>
+        </div>
+        <div class="flagship-row">
+          <div class="flagship-row-key">Tools</div>
+          <div class="flagship-row-val">Python · Pandas · Scikit-learn · XGBoost · Matplotlib · Seaborn · Jupyter</div>
+        </div>
+
+        <!-- Confusion matrix mockup -->
+        <div class="flagship-visual" style="margin-top:2rem">
+          <div class="flagship-visual-label">
+            <span>Confusion Matrix · Test Set</span>
+            <span class="flagship-metric" style="font-size:.6rem">Threshold = 0.38</span>
+          </div>
+          <div class="flagship-visual-inner">
+            <div class="conf-matrix">
+              <div class="conf-cell conf-tp">
+                <span class="conf-cell-num">14,700</span>
+                <span class="conf-cell-lbl">True Positive</span>
+              </div>
+              <div class="conf-cell conf-fp">
+                <span class="conf-cell-num">3,220</span>
+                <span class="conf-cell-lbl">False Positive</span>
+              </div>
+              <div class="conf-cell conf-fn">
+                <span class="conf-cell-num">2,240</span>
+                <span class="conf-cell-lbl">False Negative</span>
+              </div>
+              <div class="conf-cell conf-tn">
+                <span class="conf-cell-num">56,840</span>
+                <span class="conf-cell-lbl">True Negative</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature importance -->
+        <div class="flagship-visual" style="margin-top:1rem">
+          <div class="flagship-visual-label">
+            <span>Feature Importance · XGBoost</span>
+          </div>
+          <div class="flagship-visual-inner">
+            <div class="feat-bar-list" id="feat-bars">
+              <div class="feat-bar-item">
+                <div class="feat-bar-header">
+                  <span class="feat-bar-name">Debt-to-Income Ratio</span>
+                  <span class="feat-bar-val">0.24</span>
+                </div>
+                <div class="feat-bar-track"><div class="feat-bar-fill rust" data-w="88"></div></div>
+              </div>
+              <div class="feat-bar-item">
+                <div class="feat-bar-header">
+                  <span class="feat-bar-name">Repayment History Score</span>
+                  <span class="feat-bar-val">0.19</span>
+                </div>
+                <div class="feat-bar-track"><div class="feat-bar-fill rust" data-w="70"></div></div>
+              </div>
+              <div class="feat-bar-item">
+                <div class="feat-bar-header">
+                  <span class="feat-bar-name">Credit Utilisation Flag</span>
+                  <span class="feat-bar-val">0.15</span>
+                </div>
+                <div class="feat-bar-track"><div class="feat-bar-fill" data-w="55"></div></div>
+              </div>
+              <div class="feat-bar-item">
+                <div class="feat-bar-header">
+                  <span class="feat-bar-name">Loan-to-Income Ratio</span>
+                  <span class="feat-bar-val">0.12</span>
+                </div>
+                <div class="feat-bar-track"><div class="feat-bar-fill" data-w="44"></div></div>
+              </div>
+              <div class="feat-bar-item">
+                <div class="feat-bar-header">
+                  <span class="feat-bar-name">Employment Length</span>
+                  <span class="feat-bar-val">0.09</span>
+                </div>
+                <div class="feat-bar-track"><div class="feat-bar-fill" data-w="32"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flagship-right" data-r data-d="2">
+        <!-- ROC Curve SVG -->
+        <div class="flagship-visual" style="margin-bottom:2rem">
+          <div class="flagship-visual-label">
+            <span>ROC Curve · XGBoost vs Random Forest</span>
+            <span class="flagship-metric" style="font-size:.6rem">AUC = 0.91</span>
+          </div>
+          <div class="flagship-visual-inner">
+            <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" aria-label="ROC curve showing AUC of 0.91">
+              <!-- grid lines -->
+              <line x1="30" y1="10" x2="30" y2="155" stroke="rgba(26,25,22,.08)" stroke-width="1"/>
+              <line x1="30" y1="155" x2="250" y2="155" stroke="rgba(26,25,22,.08)" stroke-width="1"/>
+              <line x1="30" y1="105" x2="250" y2="105" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="30" y1="55" x2="250" y2="55" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="85" y1="10" x2="85" y2="155" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="140" y1="10" x2="140" y2="155" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="195" y1="10" x2="195" y2="155" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <!-- diagonal baseline -->
+              <line x1="30" y1="155" x2="250" y2="10" stroke="rgba(26,25,22,.15)" stroke-width="1" stroke-dasharray="4,4"/>
+              <!-- XGBoost ROC (AUC 0.91) -->
+              <path d="M30,155 C50,140 60,80 90,40 C120,10 160,10 200,10 L250,10" fill="none" stroke="#b5572e" stroke-width="2" stroke-linecap="round"/>
+              <!-- Random Forest ROC (AUC 0.87) -->
+              <path d="M30,155 C55,148 70,95 105,55 C140,20 175,14 215,11 L250,10" fill="none" stroke="#b0a99f" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5,3"/>
+              <!-- operating point -->
+              <circle cx="110" cy="38" r="4" fill="#b5572e"/>
+              <text x="116" y="35" font-family="DM Mono, monospace" font-size="7" fill="#b5572e">Recall 0.87</text>
+              <!-- labels -->
+              <text x="12" y="158" font-family="DM Mono, monospace" font-size="7" fill="#b0a99f">0</text>
+              <text x="241" y="158" font-family="DM Mono, monospace" font-size="7" fill="#b0a99f">1</text>
+              <text x="4" y="13" font-family="DM Mono, monospace" font-size="7" fill="#b0a99f">1</text>
+              <text x="126" y="168" font-family="DM Mono, monospace" font-size="7" fill="#b0a99f">False Positive Rate</text>
+              <!-- legend -->
+              <line x1="36" y1="22" x2="56" y2="22" stroke="#b5572e" stroke-width="2"/>
+              <text x="59" y="25" font-family="DM Mono, monospace" font-size="7" fill="#3e3b35">XGBoost AUC=0.91</text>
+              <line x1="36" y1="32" x2="56" y2="32" stroke="#b0a99f" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <text x="59" y="35" font-family="DM Mono, monospace" font-size="7" fill="#7a756d">RF AUC=0.87</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="flagship-section">
+          <span class="flagship-section-label">The trade-off I made</span>
+          <p>I optimised for recall over precision, setting the classification threshold at 0.38 (below default 0.5). This intentionally increases false positives — flagging some good loans as risky — but reduces far more costly missed defaults.</p>
+          <p>In a real lending context: a false positive costs a manual review; a false negative costs the loan amount. I documented the expected false positive rate (~19%) so the credit team could weigh the trade-off explicitly.</p>
+        </div>
+
+        <div class="flagship-section">
+          <span class="flagship-section-label">What failed and what I learned</span>
+          <p>First iteration used raw loan amount as a feature. The model overfit — high amounts dominated feature importance, masking behavioural signals. I rebuilt with ratio-based features (debt-to-income, loan-to-income). Feature importance shifted to repayment history and utilisation patterns.</p>
+          <p><strong style="color:var(--ink)">Lesson:</strong> raw scale features in financial data tell you about the customer segment, not the risk. Engineer ratios, not magnitudes.</p>
+        </div>
+
+        <div class="flagship-section">
+          <span class="flagship-section-label">What I'd build next</span>
+          <p>A monitoring layer: track precision/recall on new data quarterly. I'd add SHAP explanations per prediction so a credit officer can see exactly which features drove a high-risk flag — critical for RBI guidelines on algorithmic credit scoring.</p>
+          <div style="margin-top:.75rem">
+            <span class="tag">SHAP explainability</span>
+            <span class="tag">Model drift monitoring</span>
+            <span class="tag">Regulatory documentation</span>
+            <span class="tag">API deployment</span>
+          </div>
+        </div>
+
+        <div class="flagship-section">
+          <span class="flagship-section-label">Output artifact</span>
+          <p>Jupyter notebook with full pipeline, confusion matrix, ROC curve, and feature importance chart. README documents all assumptions and how to reproduce on a new dataset.</p>
+          <a href="https://github.com/LokeshGaddam14/banking-analysis" target="_blank" rel="noreferrer noopener" class="hero-cta-primary" style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;font-size:.92rem">
+            View full project on GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="work" class="sec" aria-labelledby="work-heading">
+  <div class="w">
+    <div class="work-header-row" data-r>
+      <div class="sec-label" style="margin-bottom:0" id="work-heading">Selected Projects</div>
+      <div class="work-filters" role="group" aria-label="Filter projects by type">
+        <button class="wf on" data-f="all">All</button>
+        <button class="wf" data-f="dashboard">Dashboards</button>
+        <button class="wf" data-f="ml">ML</button>
+        <button class="wf" data-f="analysis">Analysis</button>
+      </div>
+    </div>
+
+    <div class="work-list">
+
+      <!-- PROJECT 01 -->
+      <article class="work-card" data-cat="dashboard" data-r data-d="1">
+        <div class="work-card-left">
+          <div class="work-card-top">
+            <span class="work-num" aria-label="Project 01">01</span>
+            <h3 class="work-title">Customer Complaints Intelligence Dashboard</h3>
+          </div>
+          <p class="work-problem">AmEx complaint records had no visibility into which products, channels, or regions were driving repeat complaints — resolution teams were reactive, not systematic.</p>
+
+          <div class="work-detail-grid">
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Approach</span>
+              <div class="work-detail-text">Python ETL across 50K+ records. SQL aggregations by product, channel, resolution time. Power BI with 8 drill-through views.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Result</span>
+              <div class="work-detail-text"><strong>8 product lines</strong> broken down by complaint volume, median resolution time, and escalation rate on one dashboard page.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Business Impact</span>
+              <div class="work-detail-text">Surfaces top 3 complaint drivers per product — gives an ops manager one screen to prioritise resolution resources.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Output</span>
+              <div class="work-detail-text">Power BI .pbix · DAX measures for complaint rate, SLA breach %, and YoY trend.</div>
+            </div>
+          </div>
+
+          <div class="work-meta">
+            <div class="work-tags">
+              <span class="tag tag-rust">Power BI</span>
+              <span class="tag tag-rust">Python</span>
+              <span class="tag tag-rust">SQL</span>
+              <span class="tag">DAX</span>
+            </div>
+            <a href="https://github.com/LokeshGaddam14/amex-complaints" target="_blank" rel="noreferrer noopener" class="work-link">
+              GitHub <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+          <p class="work-next">Next: sentiment scoring on complaint text to auto-tag tone severity — distinguishing billing confusion from a regulatory grievance.</p>
+        </div>
+
+        <!-- Dashboard visual -->
+        <div class="work-card-visual">
+          <div class="visual-header">
+            <div class="visual-dots">
+              <div class="visual-dot"></div>
+              <div class="visual-dot"></div>
+              <div class="visual-dot"></div>
+            </div>
+            <div class="visual-title-bar">Complaint Intelligence · Power BI</div>
+          </div>
+          <div class="visual-body">
+            <div class="dash-mockup">
+              <div class="dash-row">
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num rust">50K+</div>
+                  <div class="dash-kpi-lbl">Total Records</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num">4.2d</div>
+                  <div class="dash-kpi-lbl">Avg Resolution</div>
+                </div>
+                <div class="dash-kpi">
+                  <div class="dash-kpi-num rust">18%</div>
+                  <div class="dash-kpi-lbl">SLA Breach</div>
+                </div>
+              </div>
+              <div class="dash-row">
+                <div class="dash-chart">
+                  <div class="dash-chart-lbl">Complaints by Product</div>
+                  <div class="dash-bars">
+                    <div class="dash-bar" style="height:100%;background:var(--rust);opacity:.8"></div>
+                    <div class="dash-bar" style="height:72%;background:var(--rust);opacity:.6"></div>
+                    <div class="dash-bar" style="height:58%;background:var(--ink-4)"></div>
+                    <div class="dash-bar" style="height:45%;background:var(--ink-4)"></div>
+                    <div class="dash-bar" style="height:38%;background:var(--ink-4)"></div>
+                    <div class="dash-bar" style="height:31%;background:var(--ink-4)"></div>
+                    <div class="dash-bar" style="height:22%;background:var(--ink-4)"></div>
+                    <div class="dash-bar" style="height:15%;background:var(--ink-4)"></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="dash-table-row"><span>Credit Card</span><span>↑ 23%</span></div>
+                <div class="dash-table-row"><span>Personal Loan</span><span>↑ 18%</span></div>
+                <div class="dash-table-row"><span>Savings Account</span><span>↓ 4%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 02 -->
+      <article class="work-card" data-cat="analysis" data-r data-d="2">
+        <div class="work-card-left">
+          <div class="work-card-top">
+            <span class="work-num" aria-label="Project 02">02</span>
+            <h3 class="work-title">Stock Market Analysis &amp; Strategy Backtesting</h3>
+          </div>
+          <p class="work-problem">Retail investors making entry/exit decisions on intuition, with no systematic evidence their chosen indicators produce positive risk-adjusted returns.</p>
+
+          <div class="work-detail-grid">
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Approach</span>
+              <div class="work-detail-text">5 years OHLCV data. MA crossover (20/50-day), RSI, Bollinger Band strategies. Backtested with 0.1% transaction cost assumption per trade.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Result</span>
+              <div class="work-detail-text">MA crossover: <strong>Sharpe-equivalent 1.34</strong> vs buy-and-hold 0.87. RSI underperformed in trending markets — documented and explained.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Business Impact</span>
+              <div class="work-detail-text">Reproducible framework to evaluate any technical strategy before live deployment — risk-adjusted return, max drawdown, win-rate outputs.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Output</span>
+              <div class="work-detail-text">Python backtesting module, equity curve charts, performance comparison table across 3 strategies.</div>
+            </div>
+          </div>
+
+          <div class="work-meta">
+            <div class="work-tags">
+              <span class="tag tag-rust">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">NumPy</span>
+            </div>
+            <a href="https://github.com/LokeshGaddam14/stock-market-analysis" target="_blank" rel="noreferrer noopener" class="work-link">
+              GitHub <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+          <p class="work-next">Next: walk-forward validation to prevent look-ahead bias, and Monte Carlo simulation for drawdown scenarios.</p>
+        </div>
+
+        <!-- Equity curve visual -->
+        <div class="work-card-visual">
+          <div class="visual-header">
+            <div class="visual-dots">
+              <div class="visual-dot"></div><div class="visual-dot"></div><div class="visual-dot"></div>
+            </div>
+            <div class="visual-title-bar">Equity Curve · Strategy Comparison</div>
+          </div>
+          <div class="visual-body">
+            <svg viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg" aria-label="Equity curve comparison chart">
+              <!-- axes -->
+              <line x1="20" y1="10" x2="20" y2="110" stroke="rgba(26,25,22,.1)" stroke-width="1"/>
+              <line x1="20" y1="110" x2="250" y2="110" stroke="rgba(26,25,22,.1)" stroke-width="1"/>
+              <!-- grid -->
+              <line x1="20" y1="60" x2="250" y2="60" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="20" y1="35" x2="250" y2="35" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="20" y1="85" x2="250" y2="85" stroke="rgba(26,25,22,.05)" stroke-width="1" stroke-dasharray="3,3"/>
+              <!-- MA Crossover (best) -->
+              <path d="M20,100 C40,95 55,85 75,75 C90,68 100,72 115,60 C130,48 140,35 160,28 C175,22 195,18 250,15" fill="none" stroke="#b5572e" stroke-width="2" stroke-linecap="round"/>
+              <!-- Buy & Hold -->
+              <path d="M20,100 C50,96 80,90 110,82 C140,74 170,64 200,55 L250,48" fill="none" stroke="#b0a99f" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5,3"/>
+              <!-- RSI (underperformer) -->
+              <path d="M20,100 C45,100 65,98 90,92 C115,86 135,90 160,88 C185,86 210,84 250,82" fill="none" stroke="#ddd5c8" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- labels -->
+              <text x="252" y="18" font-family="DM Mono, monospace" font-size="7" fill="#b5572e">MA ×</text>
+              <text x="252" y="51" font-family="DM Mono, monospace" font-size="7" fill="#b0a99f">B&H</text>
+              <text x="252" y="85" font-family="DM Mono, monospace" font-size="7" fill="#b0a99f">RSI</text>
+            </svg>
+            <div class="equity-stat">
+              <div class="eq-s"><div class="eq-s-num">1.34</div><div class="eq-s-lbl">MA Sharpe</div></div>
+              <div class="eq-s"><div class="eq-s-num">0.87</div><div class="eq-s-lbl">B&H Sharpe</div></div>
+              <div class="eq-s"><div class="eq-s-num">−14%</div><div class="eq-s-lbl">Max Drawdown</div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 03 -->
+      <article class="work-card" data-cat="ml" data-r data-d="3">
+        <div class="work-card-left">
+          <div class="work-card-top">
+            <span class="work-num" aria-label="Project 03">03</span>
+            <h3 class="work-title">Age–Gender Detection · CNN Pipeline</h3>
+          </div>
+          <p class="work-problem">Demographic classification on live video — for retail foot-traffic analytics, digital signage targeting, and security systems.</p>
+
+          <div class="work-detail-grid">
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Approach</span>
+              <div class="work-detail-text">Fine-tuned VGG-16 on UTKFace (23K images). Separate heads for age regression and gender classification. OpenCV for real-time face detection.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Result</span>
+              <div class="work-detail-text">Gender: <strong>91% accuracy</strong>. Age: <strong>MAE ±5.2 years</strong> on held-out test set. Real-time at 18 FPS on laptop GPU.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Business Impact</span>
+              <div class="work-detail-text">Proof-of-concept for in-store demographic analytics — age-group and gender breakdown of foot traffic without manual tagging.</div>
+            </div>
+            <div class="work-detail-cell">
+              <span class="work-detail-label">Output</span>
+              <div class="work-detail-text">Trained weights, inference script, evaluation notebook with confusion matrix and error distribution by age bracket.</div>
+            </div>
+          </div>
+
+          <div class="work-meta">
+            <div class="work-tags">
+              <span class="tag tag-rust">TensorFlow</span>
+              <span class="tag">Keras</span>
+              <span class="tag">OpenCV</span>
+            </div>
+            <a href="https://github.com/LokeshGaddam14/age-gender-detection" target="_blank" rel="noreferrer noopener" class="work-link">
+              GitHub <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+          <p class="work-next">Next: data augmentation for low-light retail environments. Evaluate MobileNetV3 for edge deployment speed.</p>
+        </div>
+
+        <!-- CNN output visual -->
+        <div class="work-card-visual">
+          <div class="visual-header">
+            <div class="visual-dots">
+              <div class="visual-dot"></div><div class="visual-dot"></div><div class="visual-dot"></div>
+            </div>
+            <div class="visual-title-bar">Inference Output · VGG-16</div>
+          </div>
+          <div class="visual-body">
+            <div class="cnn-mockup">
+              <div class="cnn-face">
+                <div class="cnn-box">
+                  <span class="cnn-box-label">Male, 28y</span>
+                </div>
+              </div>
+              <div class="cnn-stats">
+                <div class="cnn-stat">
+                  <div class="cnn-stat-n">91%</div>
+                  <div class="cnn-stat-l">Gender Acc.</div>
+                </div>
+                <div class="cnn-stat">
+                  <div class="cnn-stat-n">±5.2y</div>
+                  <div class="cnn-stat-l">Age MAE</div>
+                </div>
+                <div class="cnn-stat">
+                  <div class="cnn-stat-n">18fps</div>
+                  <div class="cnn-stat-l">Inference</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ GITHUB REPOS ═══ -->
+<section id="repos" class="sec" aria-labelledby="repos-heading">
+  <div class="w">
+    <div class="sec-label" data-r id="repos-heading">Top Repositories</div>
+
+    <div class="repos-grid">
+
+      <div class="repo-card" data-r data-d="1">
+        <div class="repo-card-num">Repository 01</div>
+        <div class="repo-card-name">banking-analysis</div>
+        <div class="repo-card-desc">Loan default detection pipeline — EDA, feature engineering (14 ratio-based features), SMOTE rebalancing, XGBoost vs Random Forest comparison, threshold tuning.</div>
+        <div class="repo-card-metric">AUC 0.91 · Recall 0.87</div>
+        <div class="repo-card-footer">
+          <div class="repo-card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">XGBoost</span>
+            <span class="tag">Scikit-learn</span>
+          </div>
+          <a href="https://github.com/LokeshGaddam14/banking-analysis" target="_blank" rel="noreferrer noopener" class="repo-card-link">
+            View <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="repo-card" data-r data-d="2">
+        <div class="repo-card-num">Repository 02</div>
+        <div class="repo-card-name">amex-complaints</div>
+        <div class="repo-card-desc">Complaint intelligence dashboard — Python ETL on 50K+ records, SQL aggregations, Power BI report with 8 drill-through views and DAX-driven KPIs.</div>
+        <div class="repo-card-metric">50K records · 8 BI views</div>
+        <div class="repo-card-footer">
+          <div class="repo-card-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">SQL</span>
+            <span class="tag">DAX</span>
+          </div>
+          <a href="https://github.com/LokeshGaddam14/amex-complaints" target="_blank" rel="noreferrer noopener" class="repo-card-link">
+            View <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="repo-card" data-r data-d="3">
+        <div class="repo-card-num">Repository 03</div>
+        <div class="repo-card-name">stock-market-analysis</div>
+        <div class="repo-card-desc">Strategy backtesting framework — MA crossover, RSI, and Bollinger Band strategies compared on 5 years of OHLCV data with transaction cost assumptions.</div>
+        <div class="repo-card-metric">Sharpe 1.34 vs B&H 0.87</div>
+        <div class="repo-card-footer">
+          <div class="repo-card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+          </div>
+          <a href="https://github.com/LokeshGaddam14/stock-market-analysis" target="_blank" rel="noreferrer noopener" class="repo-card-link">
+            View <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contribution chart — kept, minimal -->
+    <div style="margin-top:4rem;padding-top:4rem;border-top:1px solid var(--rule)" data-r data-d="1">
+      <p style="font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:1rem">Contribution Activity</p>
+      <img src="https://ghchart.rshah.org/b5572e/LokeshGaddam14" alt="GitHub contribution chart for LokeshGaddam14" width="720" height="128" loading="lazy" style="width:100%;height:auto;border-radius:3px">
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" class="sec" aria-labelledby="skills-heading">
+  <div class="w">
+    <div class="sec-label" data-r>Skills &amp; Proof</div>
+
+    <div class="skills-layout">
+      <div class="skills-intro" data-r>
+        <h2 id="skills-heading" class="sec-heading">What I can do,<br><em>with receipts</em></h2>
+        <p style="margin-top:1.5rem">No self-rated percentages. Every skill is backed by a project with documented outputs at a real scale.</p>
+      </div>
+
+      <div class="skills-proof-list" data-r data-d="2">
+
+        <div class="skill-proof-row">
+          <div class="skill-proof-header">
+            <h3 class="skill-proof-name">Python · Data Pipeline &amp; Modeling</h3>
+            <span class="skill-proof-badge">Primary tool</span>
+          </div>
+          <div class="skill-proof-evidence">
+            Built a <strong>77K-record ETL + ML pipeline</strong> (loan default) from raw CSV to evaluated model — imputation, SMOTE, threshold tuning, all in one reproducible notebook. Engineered 14 ratio-based features from raw financial fields.
+          </div>
+          <div class="skill-proof-tags">
+            <span class="tag tag-rust">Pandas</span><span class="tag tag-rust">NumPy</span><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+          </div>
+        </div>
+
+        <div class="skill-proof-row">
+          <div class="skill-proof-header">
+            <h3 class="skill-proof-name">SQL · Aggregation &amp; ETL</h3>
+            <span class="skill-proof-badge">Daily use</span>
+          </div>
+          <div class="skill-proof-evidence">
+            Wrote <strong>multi-table SQL aggregations</strong> across 50K+ complaint records — joining product, channel, and resolution tables, window functions for rolling averages, LAG-based trend columns. Feeds Power BI via DirectQuery.
+          </div>
+          <div class="skill-proof-tags">
+            <span class="tag tag-rust">Window functions</span><span class="tag tag-rust">CTEs</span><span class="tag">Aggregation</span><span class="tag">ETL</span><span class="tag">Join optimisation</span>
+          </div>
+        </div>
+
+        <div class="skill-proof-row">
+          <div class="skill-proof-header">
+            <h3 class="skill-proof-name">Power BI · DAX &amp; Dashboard Design</h3>
+            <span class="skill-proof-badge">Primary BI tool</span>
+          </div>
+          <div class="skill-proof-evidence">
+            Delivered an <strong>8-view complaint intelligence dashboard</strong> with custom DAX measures — complaint rate, SLA breach %, YoY trend. Drill-through model from portfolio level to individual product in two clicks.
+          </div>
+          <div class="skill-proof-tags">
+            <span class="tag tag-rust">Power BI</span><span class="tag tag-rust">DAX</span><span class="tag">Power Query</span><span class="tag">Drill-through</span><span class="tag">Tableau</span>
+          </div>
+        </div>
+
+        <div class="skill-proof-row">
+          <div class="skill-proof-header">
+            <h3 class="skill-proof-name">Statistical EDA &amp; Hypothesis Testing</h3>
+            <span class="skill-proof-badge">Applied in 4 projects</span>
+          </div>
+          <div class="skill-proof-evidence">
+            Applied <strong>chi-square, t-tests, and distribution analysis</strong> to validate feature relevance before modeling. Pearson correlation matrix to remove multicollinear features (threshold r > 0.85). Documented statistical significance of top predictors.
+          </div>
+          <div class="skill-proof-tags">
+            <span class="tag">Hypothesis testing</span><span class="tag">Correlation analysis</span><span class="tag">Distribution plots</span><span class="tag">Feature selection</span>
+          </div>
+        </div>
+
+        <div class="skill-proof-row">
+          <div class="skill-proof-header">
+            <h3 class="skill-proof-name">Machine Learning · Classification</h3>
+            <span class="skill-proof-badge">Shipped: AUC 0.91</span>
+          </div>
+          <div class="skill-proof-evidence">
+            Trained and compared <strong>Random Forest vs XGBoost</strong> on imbalanced financial data. Tuned classification threshold to 0.38 to optimise recall on minority class. Documented precision/recall trade-off for a non-technical audience.
+          </div>
+          <div class="skill-proof-tags">
+            <span class="tag tag-rust">Random Forest</span><span class="tag tag-rust">XGBoost</span><span class="tag">SMOTE</span><span class="tag">ROC/AUC</span><span class="tag">Threshold tuning</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ JOURNEY ═══ -->
+<section id="journey" class="sec" aria-labelledby="journey-heading">
+  <div class="w">
+    <div class="sec-label" data-r id="journey-heading">Journey</div>
+
+    <div class="journey-layout" data-r data-d="1">
+      <div class="j-tabs" role="tablist" aria-label="Journey timeline">
+        <button class="j-btn" role="tab" aria-selected="true" aria-controls="je" id="tab-je">Education</button>
+        <button class="j-btn" role="tab" aria-selected="false" aria-controls="jp" id="tab-jp">Projects</button>
+        <button class="j-btn" role="tab" aria-selected="false" aria-controls="jd" id="tab-jd">Domain</button>
+        <button class="j-btn" role="tab" aria-selected="false" aria-controls="jn" id="tab-jn">Next step</button>
+      </div>
+
+      <div class="j-content">
+        <div id="je" class="j-panel" role="tabpanel" aria-labelledby="tab-je" aria-hidden="false">
+          <p class="j-period">2021 – 2026</p>
+          <h3 class="j-title">B.Tech — ECE (Data Science),<br>KL University · CGPA 8.2</h3>
+          <div class="j-body">
+            <p>Technical foundation in statistics, ML, data structures, and programming — with a specialisation track that prioritised applied analytics over theory.</p>
+            <ul>
+              <li>ML algorithms, evaluation metrics, and model selection</li>
+              <li>Statistics, probability, linear algebra — applied to real datasets</li>
+              <li>Full project lifecycle in every major course: raw data to deliverable output</li>
+              <li>Google Data Analytics Professional Certificate (Coursera)</li>
+              <li>Python for Data Science Certificate (Coursera)</li>
+            </ul>
+          </div>
+          <div class="j-tags">
+            <span class="tag tag-rust">B.Tech ECE</span>
+            <span class="tag tag-green">Data Science specialisation</span>
+            <span class="tag">CGPA 8.2</span>
+            <span class="tag">May 2026 graduate</span>
+          </div>
+        </div>
+        <div id="jp" class="j-panel" role="tabpanel" aria-labelledby="tab-jp" aria-hidden="true">
+          <p class="j-period">2022 – Present</p>
+          <h3 class="j-title">Four shipped projects,<br>all with documented outputs</h3>
+          <div class="j-body">
+            <p>Every project started with a business question, not a dataset. I defined the metric that mattered, built to hit it, and documented where the model or dashboard fell short.</p>
+            <ul>
+              <li>Loan default classifier: 77K records, AUC 0.91, threshold-tuned for recall</li>
+              <li>Complaint intelligence dashboard: 8 Power BI views, DAX-driven KPIs</li>
+              <li>Stock backtesting: 3 strategies compared on risk-adjusted return</li>
+              <li>CV demographic model: 91% gender accuracy, MAE ±5.2 years for age</li>
+            </ul>
+          </div>
+        </div>
+        <div id="jd" class="j-panel" role="tabpanel" aria-labelledby="tab-jd" aria-hidden="true">
+          <p class="j-period">Banking &amp; Financial Services</p>
+          <h3 class="j-title">Three years studying<br>how banks think about risk</h3>
+          <div class="j-body">
+            <p>Banking analytics isn't about finding patterns — it's about quantifying consequences. A false negative has a dollar cost. A missed complaint trend has a churn cost.</p>
+            <ul>
+              <li>Credit risk: default probability, threshold tuning for asymmetric costs</li>
+              <li>Customer experience: complaint root-cause, resolution SLA tracking</li>
+              <li>Market analytics: risk-adjusted return, drawdown, strategy comparison</li>
+              <li>All outputs framed in terms a credit manager or ops head would use</li>
+            </ul>
+          </div>
+        </div>
+        <div id="jn" class="j-panel" role="tabpanel" aria-labelledby="tab-jn" aria-hidden="true">
+          <p class="j-period">Available June 2026</p>
+          <h3 class="j-title">Ready to contribute<br>from week one</h3>
+          <div class="j-body">
+            <p>Looking for a data analyst role in banking, fintech, or financial services where I can own a reporting domain or analytical workstream from day one.</p>
+            <ul>
+              <li>Can pull, clean, and model financial data independently (Python + SQL)</li>
+              <li>Can design and build BI reports decision-makers will actually use (Power BI)</li>
+              <li>Can communicate findings without jargon — to technical and non-technical teams</li>
+              <li>Open to Hyderabad, Bengaluru, or fully remote</li>
+            </ul>
+          </div>
+          <a href="#contact" class="hero-cta-primary" style="display:inline-flex;align-items:center;gap:.4rem">Let's talk →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="sec" aria-labelledby="contact-heading">
+  <div class="w">
+    <div class="sec-label" data-r id="contact-heading">Contact</div>
+
+    <div class="contact-layout">
+      <div class="contact-left" data-r>
+        <h2 class="sec-heading">Hire someone who<br>ships <em>clean analysis</em></h2>
+
+        <div style="margin-top:2rem">
+          <div class="avail-badge">
+            <div class="avail-badge-dot" aria-hidden="true"></div>
+            Available for roles starting June 2026
+          </div>
+        </div>
+
+        <p>If you need an analyst who can take a messy financial dataset, build a defensible model, and explain the output to a credit manager without using the word "algorithm" — let's talk.</p>
+
+        <div class="contact-cta-line">
+          I'm specifically strong at: <strong>loan default and risk modeling · complaint intelligence dashboards · financial data pipelines · Power BI for non-technical audiences.</strong>
+        </div>
+
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/lokesh-gaddam-data-analyst" target="_blank" rel="noreferrer noopener" class="c-link">
+            <div class="c-link-left">
+              <span class="c-link-name">LinkedIn</span>
+              <span class="c-link-handle">lokesh-gaddam-data-analyst</span>
+            </div>
+            <span class="c-link-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="https://github.com/LokeshGaddam14" target="_blank" rel="noreferrer noopener" class="c-link">
+            <div class="c-link-left">
+              <span class="c-link-name">GitHub</span>
+              <span class="c-link-handle">LokeshGaddam14</span>
+            </div>
+            <span class="c-link-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#dcb0b3b7b9afb4bbbdb8b8bdb1ede89cbbb1bdb5b0f2bfb3b1" class="c-link">
+            <div class="c-link-left">
+              <span class="c-link-name">Email</span>
+              <span class="c-link-handle"><span class="__cf_email__" data-cfemail="bcd0d3d7d9cfd4dbddd8d8ddd18d88fcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></span>
+            </div>
+            <span class="c-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form" data-r data-d="2">
+        <p class="contact-form-hdg">Send a direct message</p>
+        <form id="cf" action="mailto:lokeshgaddam2514@gmail.com" enctype="text/plain" method="POST">
+          <div class="f-group">
+            <label class="f-label" for="fn">Name</label>
+            <input class="f-input" id="fn" name="name" type="text" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="fe">Email</label>
+            <input class="f-input" id="fe" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="fm">Message</label>
+            <textarea class="f-textarea" id="fm" name="message" required placeholder="Tell me about the role or opportunity…"></textarea>
+          </div>
+          <button type="submit" class="f-submit">Send message →</button>
+          <p class="f-note" id="fnote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="w footer-inner">
+    <div>
+      <div class="footer-name">Lokesh Gaddam</div>
+      <div class="footer-copy">© <span id="yr"></span> · Data Analyst · KL University · Available June 2026</div>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#about">About</a>
+      <a href="#flagship">Case Study</a>
+      <a href="#work">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+'use strict';
+
+/* ── Year ── */
+const yr = document.getElementById('yr');
+if(yr) yr.textContent = new Date().getFullYear();
+
+/* ── Nav scroll ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive: true});
+
+/* ── Sticky CTA ── */
+const stickyCta = document.getElementById('sticky-cta');
+let stickyShown = false;
+window.addEventListener('scroll', () => {
+  const show = window.scrollY > window.innerHeight * 0.6;
+  if(show !== stickyShown) {
+    stickyShown = show;
+    stickyCta.classList.toggle('visible', show);
+  }
+}, {passive: true});
+
+/* ── Mobile burger ── */
+const nb = document.getElementById('nb');
+const nm = document.getElementById('nm');
+nb.addEventListener('click', () => {
+  const isOpen = nm.classList.toggle('open');
+  nb.setAttribute('aria-expanded', isOpen);
+});
+nm.addEventListener('click', (e) => {
+  if(e.target.tagName === 'A') {
+    nm.classList.remove('open');
+    nb.setAttribute('aria-expanded', 'false');
+  }
+});
+
+/* ── Active nav on scroll ── */
+const navAs = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+const secs = navAs.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const aIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const id = '#' + e.target.id;
+    navAs.forEach(a => a.classList.toggle('on', a.getAttribute('href') === id));
+  });
+}, {threshold: .3});
+secs.forEach(s => aIO.observe(s));
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href').slice(1);
+    const t = document.getElementById(id);
+    if(!t) return;
+    e.preventDefault();
+    window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth'});
+  });
+});
+
+/* ── Reveal — ONLY hero + key sections ── */
+const REVEAL_SELECTORS = [
+  '#hero [data-r]',
+  '#about [data-r]',
+  '#flagship [data-r]',
+  '#work [data-r]',
+  '#repos [data-r]',
+  '#skills [data-r]',
+  '#journey [data-r]',
+  '#contact [data-r]',
+];
+const revealEls = document.querySelectorAll(REVEAL_SELECTORS.join(','));
+
+const rIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('in');
+      rIO.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.06, rootMargin: '0px 0px -40px 0px'});
+
+revealEls.forEach(el => rIO.observe(el));
+
+/* ── Feature importance bar animation ── */
+const featIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('.feat-bar-fill').forEach(f => {
+      f.style.width = (f.getAttribute('data-w') || 0) + '%';
+    });
+    featIO.unobserve(e.target);
+  });
+}, {threshold: .3});
+const featSection = document.getElementById('feat-bars');
+if(featSection) featIO.observe(featSection);
+
+/* ── Work filter ── */
+document.querySelectorAll('.wf').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.wf').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const f = btn.getAttribute('data-f');
+    document.querySelectorAll('.work-card').forEach(item => {
+      const show = f === 'all' || item.getAttribute('data-cat') === f;
+      item.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+/* ── Journey tabs ── */
+const tabs = document.querySelectorAll('.j-btn');
+const panels = document.querySelectorAll('.j-panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+    panels.forEach(p => p.setAttribute('aria-hidden', 'true'));
+    tab.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    if(panel) panel.setAttribute('aria-hidden', 'false');
+  });
+});
+
+/* ── Contact form ── */
+const cf = document.getElementById('cf');
+const fnote = document.getElementById('fnote');
+cf.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const submitBtn = cf.querySelector('.f-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+  fnote.textContent = '';
+  try {
+    const formData = new FormData(cf);
+    const response = await fetch(cf.action, {
+      method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
+    });
+    if(response.ok) {
+      fnote.textContent = "Message sent — I'll reply within 24 hours.";
+      fnote.classList.remove('error');
+      cf.reset();
+    } else { throw new Error('Server error'); }
+  } catch {
+    fnote.textContent = 'Something went wrong — email me directly at lokeshgaddam2514@gmail.com';
+    fnote.classList.add('error');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send message →';
+  }
+});
+
+})();
+</script>
+</body>
+</html>
